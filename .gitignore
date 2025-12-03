@@ -1,5 +1,6 @@
 .venv/
-sinan_data/
+sinan_data/*
+!sinan_data/*.txt
 __pycache__/
 *.pyc
 .DS_Store

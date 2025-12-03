@@ -1,0 +1,19 @@
+================================================================================
+RELATÓRIO CONSOLIDADO DE COMPLETUDE - SINAN
+Ano: 2022 | UF: SP
+================================================================================
+
+             Agravo Código  Total_Registros  Total_Campos  Completude_Média_%  Completude_Mediana_%  Campos_100%  Campos_0%    Status
+       Leptospirose   lept             1000           120               56.36                 85.60           16         19 ✓ Sucesso
+        Tuberculose   tube             1000            94               53.51                 63.25           19         19 ✓ Sucesso
+     Dengue - Casos   deng             1000           121               42.90                  5.60           20         48 ✓ Sucesso
+           HIV/AIDS   hiva                0             0                 NaN                   NaN            0          0    ✗ erro
+Sífilis (Adquirida)   sifa                0             0                 NaN                   NaN            0          0    ✗ erro
+
+================================================================================
+RESUMO ESTATÍSTICO
+================================================================================
+Total de Agravos Processados: 5
+Agravos com Sucesso: 3
+Agravos com Erro: 2
+Completude Média Geral: 50.92%
