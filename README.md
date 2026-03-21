@@ -1,140 +1,86 @@
-# Pipeline de Análise de Completude de Dados do SINAN
+# PredSUS: Pipeline e Repositório de Dados de Saúde Pública do Brasil
 
-Este pipeline automatiza o download, processamento e análise de completude dos dados do Sistema de Informação de Agravos de Notificação (SINAN) do DATASUS.
+Este repositório contém um pipeline automatizado para análise de completude de dados do SINAN (DATASUS) e um diretório abrangente das principais bases de dados abertas de saúde pública do Brasil e do mundo, focadas em epidemiologia, machine learning e predição.
 
-## Funcionalidades
+## 🚀 Pipeline de Análise de Completude (SINAN)
 
-- ✅ **Download automático** de múltiplos agravos do SINAN
+O pipeline automatiza o download, processamento e análise de completude dos dados do Sistema de Informação de Agravos de Notificação (SINAN) do DATASUS.
+
+### Funcionalidades do Pipeline
+- ✅ **Download automático** de múltiplos agravos do SINAN via FTP
 - ✅ **Filtragem por região** (UF) para trabalhar com amostras menores
 - ✅ **Limitação de amostra** para processamento rápido
 - ✅ **Análise de completude** individual por agravo
 - ✅ **Relatório consolidado** com todos os agravos em uma única tabela
 - ✅ **Múltiplos formatos** de saída (CSV, Excel, TXT)
 
-## Requisitos
+### Como usar o Pipeline
 
-- Python 3.7+
-- Bibliotecas Python (instaladas automaticamente):
-  - `pandas`
-  - `dbfread`
-  - `datasus-fetcher`
-  - `dbc-to-dbf`
-  - `openpyxl` (opcional, para relatórios Excel)
-
-## Instalação
-
-1. Clone ou baixe este repositório
-2. Instale as dependências:
-
+1. Instale as dependências:
 ```bash
 pip install pandas dbfread datasus-fetcher dbc-to-dbf openpyxl
 ```
 
-Ou simplesmente execute o pipeline, que instalará automaticamente as dependências necessárias.
+2. Edite a função `main()` no arquivo `pipeline.py` para ajustar os parâmetros (Ano, UF, Tamanho da Amostra).
 
-## Uso
-
-### Configuração Básica
-
-Edite a função `main()` no arquivo `pipeline.py` para ajustar os parâmetros:
-
-```python
-ANO = 2022       # Ano dos dados
-UF = "SP"        # Unidade Federativa (SP, RJ, MG, etc.)
-SAMPLE_SIZE = 1000  # Tamanho da amostra por agravo
-MAX_AGRAVOS = 10  # Limite de agravos (None para processar todos)
-```
-
-### Execução
-
+3. Execute:
 ```bash
 python pipeline.py
 ```
 
-### Parâmetros
+*Nota: A conversão de arquivos DBC para CSV pode exigir a instalação do Microsoft Visual C++ Build Tools no Windows. Veja o arquivo `INSTRUCOES_INSTALACAO.md` para mais detalhes.*
 
-- **ANO**: Ano dos dados a serem baixados (ex: 2022)
-- **UF**: Código da Unidade Federativa (2 letras):
-  - SP (São Paulo)
-  - RJ (Rio de Janeiro)
-  - MG (Minas Gerais)
-  - RS (Rio Grande do Sul)
-  - PR (Paraná)
-  - etc.
-- **SAMPLE_SIZE**: Número máximo de registros a processar por agravo (padrão: 1000)
-- **MAX_AGRAVOS**: Limite de agravos para processar (útil para testes)
+---
 
-## Saídas
+## 📊 Diretório de Bases de Dados de Saúde Pública
 
-O pipeline gera os seguintes arquivos:
+Abaixo está um mapeamento abrangente das principais bases de dados de saúde pública disponíveis para pesquisa, análise epidemiológica e desenvolvimento de modelos preditivos (Machine Learning/IA).
 
-### Por Agravo
-- `[agravo]_[ano].csv` - Dados convertidos em CSV
-- `[agravo]_[ano]_relatorio_completude.txt` - Relatório detalhado de completude
+### 🇧🇷 Bases de Dados Nacionais (Brasil)
 
-### Consolidado
-- `relatorio_consolidado_completude_[ano]_[uf].csv` - Tabela consolidada em CSV
-- `relatorio_consolidado_completude_[ano]_[uf].xlsx` - Tabela consolidada em Excel (com abas)
-- `relatorio_consolidado_completude_[ano]_[uf].txt` - Relatório consolidado em texto
+#### Sistemas do DATASUS (Ministério da Saúde)
+- **[SINAN (Sistema de Informação de Agravos de Notificação)](https://datasus.saude.gov.br/transferencia-de-arquivos/)**: Dados sobre doenças de notificação compulsória (Dengue, Tuberculose, HIV, Sífilis, etc.).
+- **[SIM (Sistema de Informações sobre Mortalidade)](https://datasus.saude.gov.br/transferencia-de-arquivos/)**: Registros de declarações de óbito em todo o território nacional.
+- **[SINASC (Sistema de Informações sobre Nascidos Vivos)](https://datasus.saude.gov.br/transferencia-de-arquivos/)**: Dados epidemiológicos sobre nascimentos.
+- **[SIH/SUS (Sistema de Informações Hospitalares)](https://datasus.saude.gov.br/transferencia-de-arquivos/)**: Dados de internações hospitalares financiadas pelo SUS (AIH).
+- **[SIA/SUS (Sistema de Informações Ambulatoriais)](https://datasus.saude.gov.br/transferencia-de-arquivos/)**: Dados de atendimentos ambulatoriais no SUS.
+- **[CNES (Cadastro Nacional de Estabelecimentos de Saúde)](https://cnes.datasus.gov.br/)**: Informações sobre infraestrutura, leitos e profissionais de saúde.
 
-### Estrutura do Relatório Consolidado
+#### Atenção Primária e Vigilância
+- **[SISAB / e-SUS APS](https://sisab.saude.gov.br/)**: Sistema de Informação em Saúde para a Atenção Básica. Contém dados de atendimentos, vacinação e acompanhamento de condições crônicas.
+- **[SIVEP-Gripe](https://dados.gov.br/dados/conjuntos-dados/srag-2021-e-2022)**: Sistema de Informação da Vigilância Epidemiológica da Gripe. Base fundamental para dados de SRAG (Síndrome Respiratória Aguda Grave) e COVID-19.
+- **[VIGITEL](https://www.gov.br/saude/pt-br/composicao/svsa/inqueritos-de-saude/vigitel)**: Vigilância de Fatores de Risco e Proteção para Doenças Crônicas por Inquérito Telefônico.
+- **[SISPRENATAL](http://siab.datasus.gov.br/DATASUS/index.php?area=060305)**: Sistema de Acompanhamento da Gestante.
+- **[HIPERDIA](http://siab.datasus.gov.br/DATASUS/index.php?area=060304)**: Sistema de Cadastramento e Acompanhamento de Hipertensos e Diabéticos.
 
-O relatório consolidado contém:
+#### Oncologia e Doenças Crônicas
+- **[RCBP (Registros de Câncer de Base Populacional) - INCA](https://www.gov.br/inca/pt-br/assuntos/cancer/numeros/registros/base-populacional)**: Incidência de câncer, distribuição e tendência temporal no Brasil.
+- **[Painel de Oncologia (Brasil)](https://datasus.saude.gov.br/transferencia-de-arquivos/)**: Dados sobre o tempo de início do tratamento oncológico no SUS.
 
-| Coluna | Descrição |
-|--------|-----------|
-| Agravo | Nome do agravo |
-| Código | Código do agravo no DATASUS |
-| Total_Registros | Número de registros processados |
-| Total_Campos | Número de campos na base |
-| Completude_Média_% | Percentual médio de preenchimento |
-| Completude_Mediana_% | Percentual mediano de preenchimento |
-| Campos_100% | Quantidade de campos 100% preenchidos |
-| Campos_0% | Quantidade de campos 0% preenchidos |
-| Status | Status do processamento |
+#### Saúde Suplementar e Orçamento
+- **[Dados Abertos ANS](https://dados.gov.br/dados/conjuntos-dados/informacoes-consolidadas-de-beneficiarios)**: Informações consolidadas de beneficiários de planos de saúde no Brasil.
+- **[SIOPS](https://www.gov.br/saude/pt-br/acesso-a-informacao/siops)**: Sistema de Informações sobre Orçamentos Públicos em Saúde.
 
-## Mapeamento de Agravos
+#### Inquéritos Populacionais (IBGE)
+- **[PNS (Pesquisa Nacional de Saúde)](https://www.ibge.gov.br/estatisticas/sociais/saude/9160-pesquisa-nacional-de-saude.html)**: Amplo inquérito domiciliar sobre situação de saúde, estilos de vida e acesso a serviços.
+- **[Estatísticas do Registro Civil (Mortalidade e Natalidade)](https://www.ibge.gov.br/estatisticas/sociais/populacao/9127-estatisticas-do-registro-civil.html)**: Dados complementares ao SIM e SINASC.
 
-O pipeline extrai automaticamente os agravos do arquivo `tabela_agravos.md` e os mapeia para os códigos do DATASUS. Alguns agravos podem ter subcategorias (a., b., c., etc.) que são processadas separadamente quando disponíveis.
+### 🌎 Bases de Dados Internacionais (Epidemiologia e Saúde Global)
 
-## Tratamento de Erros
+- **[Global Burden of Disease (GBD) - IHME](https://www.healthdata.org/research-analysis/gbd)**: A mais abrangente pesquisa epidemiológica observacional mundial. Quantifica a perda de saúde por centenas de doenças, lesões e fatores de risco.
+- **[Global Health Observatory (GHO) - WHO](https://www.who.int/data/gho)**: Repositório de dados da Organização Mundial da Saúde com estatísticas de 194 países.
+- **[PAHO Open Data (OPAS)](https://opendata.paho.org/en)**: Portal interativo com mais de 140 indicadores de saúde focados na América Latina e Caribe.
+- **[MIMIC-IV (Medical Information Mart for Intensive Care)](https://physionet.org/content/mimiciv/)**: Base de dados de UTI amplamente utilizada para modelos preditivos clínicos.
 
-O pipeline é robusto e continua processando mesmo quando alguns agravos falham:
-- Agravos não disponíveis para o ano especificado são pulados
-- Erros de conversão são registrados no relatório consolidado
-- Status de cada agravo é indicado no relatório final
+---
 
-## Limitações
+## 🛠️ Ferramentas e Bibliotecas Úteis para Dados do SUS
 
-- O download de dados pode ser lento dependendo da conexão
-- Alguns agravos podem não estar disponíveis para todos os anos
-- A filtragem por UF pode não funcionar para todos os agravos (dependendo da estrutura dos dados)
+- **[PySUS](https://github.com/danicat/pysus)**: Biblioteca Python para download e processamento de dados do DATASUS (arquivos DBC).
+- **[datasus-fetcher](https://pypi.org/project/datasus-fetcher/)**: Ferramenta para download automatizado de arquivos FTP do DATASUS.
+- **[Base dos Dados](https://basedosdados.org/)**: Plataforma que disponibiliza dados públicos brasileiros (incluindo saúde) já limpos e prontos para uso via SQL, Python ou R.
+- **[Painéis CONASEMS](https://paineis.conasems.org.br/)**: Painéis interativos com indicadores de saúde municipais.
 
-## Exemplo de Saída
+## 📜 Licença
 
-```
-================================================================================
-RELATÓRIO CONSOLIDADO DE COMPLETUDE - SINAN
-Ano: 2022 | UF: SP
-================================================================================
-
-Agravo                        Código  Total_Registros  Completude_Média_%  Status
-Dengue - Casos                deng    1000              87.5                ✓ Sucesso
-Tuberculose                   tube    950               92.3                ✓ Sucesso
-Hepatites virais              hepa    800               85.1                ✓ Sucesso
-```
-
-## Suporte
-
-Para problemas ou dúvidas, verifique:
-1. Se todas as dependências estão instaladas
-2. Se o `datasus-fetcher` está funcionando corretamente
-3. Se há espaço em disco suficiente
-4. Se a conexão com a internet está ativa
-
-## Notas
-
-- Os dados são baixados diretamente do DATASUS
-- O processamento pode levar algum tempo dependendo do número de agravos
-- Recomenda-se começar com `MAX_AGRAVOS = 5` para testes
-
+Este projeto está licenciado sob a licença MIT. Sinta-se à vontade para contribuir com novas bases de dados ou melhorias no pipeline!
