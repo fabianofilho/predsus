@@ -1,5 +1,15 @@
 # PredSUS: Pipeline e Repositório de Dados de Saúde Pública do Brasil
 
+> [!IMPORTANT]
+> **Repositório arquivado.** Não recebe mais correções nem atualizações. O que tinha uso foi migrado para repositórios ativos do lab; o restante fica aqui só como registro.
+>
+> - **Tabela de agravos** (`tabela_agravos.md`): passou para [`docs/agravos.md`](https://github.com/labdaps/datasus-core/blob/main/docs/agravos.md) no [labdaps/datasus-core](https://github.com/labdaps/datasus-core).
+> - **Diretório de bases de dados** (seção mais abaixo neste README): passou para [`docs/fontes.md`](https://github.com/labdaps/datasus-core/blob/main/docs/fontes.md) no labdaps/datasus-core.
+> - **Análise de completude** (`analyze_completeness` no `pipeline.py`): reimplementada no módulo [`datasus_core.quality`](https://github.com/labdaps/datasus-core/blob/main/src/datasus_core/quality.py) do labdaps/datasus-core, que conta o código de ignorado como ausente e não tira média entre agravos.
+> - **Restante do `pipeline.py`** (download, filtro de UF, conversão DBC e relatórios): não foi migrado, porque se sobrepõe ao app canônico [fabianofilho/lab-ai-prediction](https://github.com/fabianofilho/lab-ai-prediction). Para baixar e ler o SINAN, use o app ou o `datasus_core.io`, que saiu dele.
+>
+> `INSTRUCOES_INSTALACAO.md` e `instalar_ferramentas.md` também ficam só como registro: não baixe o conversor DBC pelo link de compartilhamento de arquivos citado ali. O datasus-core lê DBC com o pacote `datasus-dbc`, instalado pelo pip.
+
 Este repositório contém um pipeline automatizado para análise de completude de dados do SINAN (DATASUS) e um diretório abrangente das principais bases de dados abertas de saúde pública do Brasil e do mundo, focadas em epidemiologia, machine learning e predição.
 
 ## 🚀 Pipeline de Análise de Completude (SINAN)
